@@ -66,6 +66,7 @@ Array findNextPieces(CS) {
 }
 
 PA = [p0,p1, ... ,p63]
+
 SOLS[]
 
 DFS( CS, STACK ) {
