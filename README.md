@@ -13,7 +13,7 @@ Puzzles iin colors consists of 4 fields each having a color. Puzzles have severa
 - Blue (5)
 - Brown (6)
 
-A single peace can therefore be modelled as a 4 digit number starting in the top left corner and running clockwise to the next fiel, i.E.
+A single piece can therefore be modelled as a 4 digit number starting in the top left corner and running clockwise to the next fiel, i.E.
 
 2411 is a piece with the following 3 field colors: 
 - Orange (top left)
@@ -21,5 +21,16 @@ A single peace can therefore be modelled as a 4 digit number starting in the top
 - Yellow (bottom right)
 - Yellow (bottom left)
 
-# Procedere
-test
+Since the pieces can be roteted the numbers must be shifted 4 timees for each piece
+2411 becomes 4112, 1124, 1241 
+
+The pieces can be stored id a simple structure containing the number an a flag for "original" and "rotated".
+
+[0] first piece
+...
+[i] 2411 original
+[i+1] 4112 rotated
+[i+2] 1224 rotated
+[i+3] 1241 rotated
+...
+[n-1] last piece
