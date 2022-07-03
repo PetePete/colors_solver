@@ -54,3 +54,18 @@ DFS(node, goal)
     }  
 }  
 ```
+
+SOLS[]
+
+DFS( CS, STACK ) {
+    if ( STACK == empty ) {
+        SOLS.push( CS )
+        return SOLS
+    }
+    else { 
+        STACK.push(findNextPiece(CS) )
+        while ( STACK != empty ) {
+            DFS( CS, STACK )
+        }
+    }
+}
