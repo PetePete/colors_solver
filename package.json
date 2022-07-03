@@ -1,0 +1,25 @@
+{
+  "name": "colors_solver",
+  "version": "1.0.0",
+  "description": "Reference implementation to solve the colors game from https://github.com/wengerp",
+  "main": "Piece.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wengerp/colors_solver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wengerp/colors_solver/issues"
+  },
+  "homepage": "https://github.com/wengerp/colors_solver#readme",
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}

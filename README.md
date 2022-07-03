@@ -69,7 +69,7 @@ PA = [p0,p1, ... ,p63]
 
 SOLS[]
 
-DFS( CS, STACK ) {
+Array DFS( CS, STACK ) {
     if ( STACK == empty ) {
         SOLS.push( CS )
         return SOLS
