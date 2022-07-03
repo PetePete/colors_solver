@@ -26,11 +26,13 @@ Since the pieces can be roteted the numbers must be shifted 4 timees for each pi
 
 The pieces can be stored id a simple structure containing the number an a flag for "original" and "rotated".
 
-[0] first piece
-...
-[i] 2411 original
-[i+1] 4112 rotated
-[i+2] 1224 rotated
-[i+3] 1241 rotated
-...
-[n-1] last piece
+[0] first piece  
+...  
+[i] 2411 GUID i  
+[i+1] 4112 GUID i  
+[i+2] 1224 GUID i  
+[i+3] 1241 GUID i  
+...  
+[n-1] last piece  
+
+# Search
