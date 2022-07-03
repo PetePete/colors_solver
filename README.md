@@ -54,7 +54,18 @@ DFS(node, goal)
     }  
 }  
 ```
+```
+Array findNextPieces(CS) {
+    lastPiese := peek(CS)
+    foreach p in PA {
+        if (p.matchPiece(lp)) {
+            CAND.push(p)
+        }
+    }
+    return CAND
+}
 
+PA = [p0,p1, ... ,p63]
 SOLS[]
 
 DFS( CS, STACK ) {
@@ -63,9 +74,10 @@ DFS( CS, STACK ) {
         return SOLS
     }
     else { 
-        STACK.push(findNextPiece(CS) )
+        STACK.push(findNextPieces(CS) )
         while ( STACK != empty ) {
             DFS( CS, STACK )
         }
     }
 }
+```
