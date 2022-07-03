@@ -54,7 +54,7 @@ DFS(node, goal)
     }  
 }  
 ```
-
+```
 SOLS[]
 
 DFS( CS, STACK ) {
@@ -69,3 +69,4 @@ DFS( CS, STACK ) {
         }
     }
 }
+```
