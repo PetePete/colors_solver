@@ -36,3 +36,21 @@ The pieces can be stored id a simple structure containing the number an a flag f
 [n-1] last piece  
 
 # Search
+```
+DFS(node, goal)  
+{  
+    if (node == goal)  
+    {  
+        return node;  
+    }  
+    else  
+    {  
+        stack := expand (node)  
+        while (stack is not empty)  
+        {  
+            node' := pop(stack);  
+            DFS(node', goal);  
+        }  
+    }  
+}  
+```
