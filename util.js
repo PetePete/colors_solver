@@ -107,8 +107,8 @@ class Util {
 
         //Lösung gefunden
         if (aCurrentSolution.length === iOriginalPieces) {
-            console.log("Lösung gefunden:");
-            console.table(aCurrentSolution);
+            // console.log("Lösung gefunden:");
+            // console.table(aCurrentSolution);
             aAllSolution.push(aCurrentSolution);
             return;
         }

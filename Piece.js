@@ -30,33 +30,6 @@ class Piece {
 
     print() {
         return this._color;
-        //     let sColorName1 = this._color.toString()[0];
-        //     let iRest = 8 - sColorName1.length;
-        //     sColorName1 = Util.getColorName(Math.floor(iRest / 2), sColorName1, Math.round(iRest / 2));
-
-        //     let sColorName2 = this._color.toString()[1];
-        //     iRest = 8 - sColorName2.length;
-        //     sColorName2 = Util.getColorName(Math.floor(iRest / 2), sColorName2, Math.round(iRest / 2));
-
-        //     let sColorName3 = this._color.toString()[2];
-        //     iRest = 8 - sColorName3.length;
-        //     sColorName3 = Util.getColorName(Math.floor(iRest / 2), sColorName3, Math.round(iRest / 2));
-
-        //     let sColorName4 = this._color.toString()[3];
-        //     iRest = 8 - sColorName4.length;
-        //     sColorName4 = Util.getColorName(Math.floor(iRest / 2), sColorName4, Math.round(iRest / 2));
-
-        //     process.stdout.write(`
-        //         ____________________
-        //         |        |        |
-        //         |${sColorName1}|${sColorName2}|
-        //         |        |        |
-        //         --------------------
-        //         |        |        |
-        //         |${sColorName3}|${sColorName4}|
-        //         |        |        |
-        //         --------------------
-        //         `);
     }
 
 }
