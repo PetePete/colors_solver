@@ -1,10 +1,23 @@
 const Piece = require("./Piece");
 
 class Util {
+
+    static iMaxPieces = 0;
+    static  iOriginalPieces = this.iMaxPieces / 4;
+    static iRowSize = Math.sqrt(this.iOriginalPieces);
+    static idCounter = 0;
+
     constructor() {
         if (this instanceof Util) {
             throw Error('A static class cannot be instantiated.');
         }
+    }
+
+    static setMetadata(maxPieces) {
+        this.iMaxPieces = maxPieces;
+        this.iOriginalPieces = this.iMaxPieces / 4;
+        this.iRowSize = Math.sqrt(this.iOriginalPieces);
+    
     }
 
     static getColorName(iStart, sColor, iEnd) {
@@ -98,15 +111,12 @@ class Util {
     }
 
     static findNextPiece(aCurrentSolution, aAvailablePieces, aAllSolution, iDepth) {
-        let iMaxPieces = aCurrentSolution.length * 4 + aAvailablePieces.length;
-        let iOriginalPieces = iMaxPieces / 4;
-        let iRowSize = Math.sqrt(iOriginalPieces);
-        let iNewLineStep = iOriginalPieces / iRowSize;
+        let iNewLineStep = this.iOriginalPieces / this.iRowSize;
         var aPossibleMatches = [];
         iDepth++;
 
         //Lösung gefunden
-        if (aCurrentSolution.length === iOriginalPieces) {
+        if (aCurrentSolution.length === this.iOriginalPieces) {
             // console.log("Lösung gefunden:");
             // console.table(aCurrentSolution);
             aAllSolution.push(aCurrentSolution);
@@ -121,7 +131,7 @@ class Util {
             //Wenn erste Zeile, nur Links schauen
             var iNewIndex = aCurrentSolution.length; //= - 1 für aktuelle Position +1 für neue Position vom zu suchenden Teil, daher belassen;
             var iCurrentPieceIndex = aCurrentSolution.length - 1;
-            if (iNewIndex <= iRowSize-1) {
+            if (iNewIndex <= this.iRowSize - 1) {
                 aAvailablePieces.forEach(oAvailablePiece => {
                     if (this.compareLeft(aCurrentSolution[iCurrentPieceIndex], oAvailablePiece)) {
                         //console.log(`Passendes Teil zu ${aCurrentSolution[iCurrentPieceIndex].print()} gefunden: ${oAvailablePiece.print()} (compareLeft)`);
@@ -140,11 +150,11 @@ class Util {
             // 2 3
 
             // => Index für oben prüfen = letztes Stück - 4
-            
+
             //else if (iNewIndex === 4 || iNewIndex === 8 || iNewIndex === 12) {
-            else if(iNewIndex % iNewLineStep === 0) {
+            else if (iNewIndex % iNewLineStep === 0) {
                 aAvailablePieces.forEach(oAvailablePiece => {
-                    if (this.compareUp(aCurrentSolution[iNewIndex - iRowSize], oAvailablePiece)) {
+                    if (this.compareUp(aCurrentSolution[iNewIndex - this.iRowSize], oAvailablePiece)) {
                         //console.log(`Passendes Teil zu ${aCurrentSolution[iNewIndex - 4].print()} gefunden: ${oAvailablePiece.print()} (compareUp)`);
                         aPossibleMatches.push(oAvailablePiece);
                     }
@@ -155,7 +165,7 @@ class Util {
             else {
                 aAvailablePieces.forEach(oAvailablePiece => {
                     if (this.compareLeft(aCurrentSolution[iCurrentPieceIndex], oAvailablePiece) &&
-                        this.compareUp(aCurrentSolution[iNewIndex - iRowSize], oAvailablePiece)) {
+                        this.compareUp(aCurrentSolution[iNewIndex - this.iRowSize], oAvailablePiece)) {
                         //console.log(`Passendes Teil zu ${aCurrentSolution[iCurrentPieceIndex].print()} und ${aCurrentSolution[iNewIndex - 4].print()} gefunden: ${oAvailablePiece.print()} (compareLeft und compareUp)`);
                         aPossibleMatches.push(oAvailablePiece);
                     }
@@ -183,23 +193,20 @@ class Util {
 
     }
 
+    static removeElements(arr, element) {
+        var index = arr.indexOf(element);
+        while (index > -1) {
+            arr.splice(index, 1);
+            index = arr.indexOf(element);
+        }
+    }
+
+
     static cleanupAvailablePieces(aAvailablePieces, aSolution) {
-        var aResult = [];
-
-        aAvailablePieces.forEach(oAvailablePiece => {
-            let bFound = false;
-            aSolution.forEach(oSolutionPiece => {
-                if(oAvailablePiece._sGuid === oSolutionPiece._sGuid) {
-                    bFound = true;
-                }
-
-            });
-
-            if(!bFound) {
-                aResult.push(oAvailablePiece);
-            }
-        });
-        return aResult;
+        for (var i=0; i<aSolution.length; i++) {
+             this.removeElements(aAvailablePieces, aSolution[i]);
+        }
+        return aAvailablePieces;
     }
 }
 

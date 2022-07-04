@@ -1,12 +1,14 @@
 const Util = require('./Util.js')
 
 class Piece {
+
     constructor(iColor, sGuid, sOriginalColor) {
         this._originalColor = iColor;
         this._color = iColor;
 
         if (!sGuid) {
-            this._sGuid = Util.createGuid();
+            Util.idCounter++;
+            this._sGuid = Util.idCounter;
         }
         else {
             this._sGuid = sGuid;
