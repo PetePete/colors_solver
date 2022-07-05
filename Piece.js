@@ -1,17 +1,17 @@
-const Util = require('./Util.js')
+const Util = require('./util.js')
 
 class Piece {
 
-    constructor(iColor, sGuid, sOriginalColor) {
+    constructor(iColor, sId, sOriginalColor) {
         this._originalColor = iColor;
         this._color = iColor;
 
-        if (!sGuid) {
+        if (!sId) {
             Util.idCounter++;
-            this._sGuid = Util.idCounter;
+            this._sId = Util.idCounter;
         }
         else {
-            this._sGuid = sGuid;
+            this._sId = sId;
         }
 
         if (!sOriginalColor) {
@@ -23,10 +23,10 @@ class Piece {
     }
 
     rotate() {
-        let oNew = new Piece(this._color, this._sGuid, this._originalColor);
-        let sColor = oNew._color.toString();
+        let oNew = new Piece(this._color, this._sId, this._originalColor);
+        let sColor = oNew._color;
         sColor = sColor[1].concat(sColor[2], sColor[3], sColor[0]);
-        oNew._color = parseInt(sColor, 10);
+        oNew._color = sColor;
         return oNew;
     }
 
@@ -36,4 +36,4 @@ class Piece {
 
 }
 
-module.exports = Piece
+module.exports =  Piece
