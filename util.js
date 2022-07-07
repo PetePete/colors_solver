@@ -42,15 +42,12 @@ class Util {
             return false;
         }
 
-        let sColorCurrent = oCurrentPiece._color.toString();
-        let sColorCheck = oCheckPiece._color.toString();
-
+    
         //Index 1 und Index 2 = Rechte Seite, Index 0 und Index 3 = Linke Seite
-        if (sColorCheck[0] === sColorCurrent[1] && sColorCheck[3] === sColorCurrent[2]) {
-            return true;
-        }
+        if (oCheckPiece._color[0] !=  oCurrentPiece._color[1]) return false;
+        if (oCheckPiece._color[3] !=  oCurrentPiece._color[2]) return false;
 
-        return false;
+        return true;
     }
 
     static compareUp(oCurrentPiece, oCheckPiece) {
@@ -59,15 +56,11 @@ class Util {
             return false;
         }
 
-        let sColorCurrent = oCurrentPiece._color.toString();
-        let sColorCheck = oCheckPiece._color.toString();
-
+        if (oCheckPiece._color[0] != oCurrentPiece._color[3]) return false;
+        if (oCheckPiece._color[1] != oCurrentPiece._color[2]) return false;
         //Index 0 und Index 1 = Obere Seite, Index 2 und Index 3 = Untere Seite
-        if (sColorCheck[0] === sColorCurrent[3] && sColorCheck[1] === sColorCurrent[2]) {
-            return true;
-        }
 
-        return false;
+        return true;
     }
 
     static findNextPiece(aCurrentSolution, aAvailablePieces, aAllSolution, iDepth) {
@@ -91,13 +84,11 @@ class Util {
             if (iNewIndex <= this.iRowSize - 1) {
                 aAvailablePieces.forEach(oAvailablePiece => {
                     if (this.compareLeft(aCurrentSolution[iCurrentPieceIndex], oAvailablePiece)) {
-                        //console.log(`Passendes Teil zu ${aCurrentSolution[iCurrentPieceIndex].print()} gefunden: ${oAvailablePiece.print()} (compareLeft)`);
                         aPossibleMatches.push(oAvailablePiece);
                     }
                 });
-                //aAvailablePieces = this.cleanupAvailablePieces(aAvailablePieces, aPossibleMatches);
             }
-            //Wenn erste Reihe, nur oben schauen
+            //Wenn erste Spalte, nur oben schauen
             //  0  1  2  3
             //  4  5  6  7
             //  8  9 10 11
@@ -108,7 +99,6 @@ class Util {
 
             // => Index für oben prüfen = letztes Stück - 4
 
-            //else if (iNewIndex === 4 || iNewIndex === 8 || iNewIndex === 12) {
             else if (iNewIndex % this.iRowSize === 0) {
                 aAvailablePieces.forEach(oAvailablePiece => {
                     if (this.compareUp(aCurrentSolution[iNewIndex - this.iRowSize], oAvailablePiece)) {
@@ -119,11 +109,10 @@ class Util {
             //Sonst links und oben schauen
             else {
                 aAvailablePieces.forEach(oAvailablePiece => {
-                    if (this.compareLeft(aCurrentSolution[iCurrentPieceIndex], oAvailablePiece) &&
-                        this.compareUp(aCurrentSolution[iNewIndex - this.iRowSize], oAvailablePiece)) {
-                        aPossibleMatches.push(oAvailablePiece);
-                    }
-                });
+                    if (!this.compareLeft(aCurrentSolution[iCurrentPieceIndex], oAvailablePiece))  return;
+                    if (!this.compareUp(aCurrentSolution[iNewIndex - this.iRowSize], oAvailablePiece)) return;
+                    aPossibleMatches.push(oAvailablePiece);
+                    })
             }
         }
 

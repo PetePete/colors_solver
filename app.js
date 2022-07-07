@@ -102,12 +102,14 @@ Util.setMetadata(aPiece.length);
 console.log("Startup finished, here goes the puzzle solving miracle...");
 
 performance.mark("Start");
+
 //Start Logik
 var aAllSolution = [];
 var aSolution = [];
 
 //Nächstes Teil suchen
 Util.findNextPiece(aSolution, aPiece, aAllSolution, 0);
+
 performance.mark("Ende");
 console.log(`Anzahl Ergebnisse: ${aAllSolution.length}`);
 
